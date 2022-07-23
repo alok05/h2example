@@ -1,54 +1,24 @@
 package com.hackerrank.sample.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 
+@Data
 public class Request {
- private int id;
 
- private String date;
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+  private String date;
 
-  public int getId() {
-    return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
-
-  public String getDate() {
-    return date;
-  }
-
-  public void setDate(String date) {
-    this.date = date;
-  }
-
-  public String getFirstName() {
-    return firstName;
-  }
-
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
-
-  public long getPhoneNumber() {
-    return phoneNumber;
-  }
-
-  public void setPhoneNumber(long phoneNumber) {
-    this.phoneNumber = phoneNumber;
-  }
-
+  @NotNull
+  @Length(min = 3, message = "Please provide at least 3 characters")
   private String firstName;
 
- private String lastName;
+  private String lastName;
 
- private long phoneNumber;
+  @Digits(fraction = 0, integer = 10, message = "Please provide valid Phone number")
+  private long phoneNumber;
+
 }
